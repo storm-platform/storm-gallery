@@ -1,3 +1,5 @@
+set.seed(777)
+
 #
 # 1. Loading the input geometries
 #

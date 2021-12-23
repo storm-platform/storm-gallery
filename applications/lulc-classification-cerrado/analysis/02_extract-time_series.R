@@ -1,8 +1,8 @@
+set.seed(777)
 
 #
 # 1. Loading the Study Area Tile IDs
 #
-
 study_area_tile_ids <-
   read.csv("data/derived_data/study-area_tile-ids.csv")
 
@@ -22,14 +22,11 @@ datacube <- sits::sits_cube(
 #
 # 3. Extracting the samples time-series from the Data Cube
 #
-
-samples_ts <- sits::sits_get_data(
-  cube       = datacube,
-  file       = "data/raw_data/03_ground-truth_samples/samples.csv",
-  multicores = 4
-)
+samples_ts <- sits::sits_get_data(cube       = datacube,
+                                  file       = "data/raw_data/03_ground-truth_samples/samples.csv",
+                                  multicores = 4)
 
 #
 # 4. Saving the extracted time-series
 #
-
+saveRDS(samples_ts, "data/derived_data/samples-ts.rds")
