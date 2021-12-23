@@ -53,4 +53,7 @@ po/*~
 # R package: bookdown caching files
 /*_files/
 
+# Results directory
+derived_data/*
+
 # End of https://www.toptal.com/developers/gitignore/api/r
