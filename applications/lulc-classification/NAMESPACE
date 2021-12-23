@@ -2,3 +2,4 @@
 
 export(classify_tile)
 export(filter_annual_samples)
+export(sample_temporal_extents)

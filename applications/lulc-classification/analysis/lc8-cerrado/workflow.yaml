@@ -13,13 +13,14 @@ datacube:
     - "band6"
     - "band7"
     - "Fmask4"
-    
+
 model:
   num_trees: 200
-  
+
 resources:
   memsize: 80
   multicores: 20
 
 files:
-  base_output_directory: "data/derived_data"
+  base_input_directory: "data/raw_data/lc8-cerrado"
+  base_output_directory: "data/derived_data/lc8-cerrado"

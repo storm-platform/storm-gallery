@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 Title <- "Title of your paper goes here"
 ```
 
-# cerradolulc
+# lulc
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh///master?urlpath=rstudio)
 

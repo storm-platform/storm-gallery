@@ -8,19 +8,26 @@ set.seed(777)
 cmdargs <- commandArgs(trailingOnly = TRUE)
 
 # Extracting the Tile ID
-tile_id <- args[1]
+tile_id <- cmdargs[1]
 
 
 #
 # General definitions
 #
 
-# Loading the workflow configurations
-workflow_config <- yaml::read_yaml("analysis/workflow.yaml")
+# Workflow Configuration
+workflow_config <-
+  yaml::read_yaml("analysis/lc8-cerrado/workflow.yaml")
 
 #  > Base output directory
 base_output_directory <-
   fs::path(workflow_config$files$base_output_directory)
+
+#  > Script specific output directory
+output_directory <-
+  base_output_directory / "lulc-classification" / tile_id
+
+fs::dir_create(output_directory)
 
 #
 # 1. Loading the required data
@@ -28,18 +35,17 @@ base_output_directory <-
 
 # Study area tiles reference
 study_area_tile_ids <-
-  readr::read_csv(output_directory / "study-area" / "study-area_tile-ids.csv")
+  readr::read_csv(base_output_directory / "study-area" / "study-area_tile-ids.csv")
 
 
 # Trained Random Forest (trees = 200) model
 rfor_model_trained <-
-  readRDS(output_directory / "model" / "rfor200_cerrado-lc8.rds")
+  readRDS(base_output_directory / "model" / "rfor200_cerrado_lc8.rds")
 
 #
 # 2. Loading the Data Cube
 #
 
-# Landsat-8/OLI Data Cube
 datacube <- sits::sits_cube(
   source     = "BDC",
   collection = workflow_config$datacube$collection,
@@ -53,19 +59,17 @@ datacube <- sits::sits_cube(
 #
 # 3. Generating the LULC map by classifying the Data Cube data.
 #
-tile_classification <- cerradolulc::classify_tile(
+tile_classification <- lulc::classify_tile(
   cube       = datacube,
   model      = rfor_model_trained,
   multicores = workflow_config$resources$multicores,
   memsize    = workflow_config$resources$memsize,
+  output_dir = output_directory
 )
 
 #
 # 4. Saving the results
 #
-output_directory <-
-  base_output_directory / "lulc-classification" / tile_id
-fs::dir_create(output_directory)
 
 # Labels
 saveRDS(tile_classification$labels, file = output_directory / "labels.rds")
