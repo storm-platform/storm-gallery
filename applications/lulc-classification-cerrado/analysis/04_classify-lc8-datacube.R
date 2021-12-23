@@ -45,6 +45,7 @@ datacube <- sits::sits_cube(
   collection = workflow_config$datacube$collection,
   start_date = workflow_config$datacube$start_date,
   end_date   = workflow_config$datacube$end_date,
+  bands      = workflow_config$datacube$bands,
   tiles      = tile_id
 )
 
