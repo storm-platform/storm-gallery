@@ -1,0 +1,25 @@
+datacube:
+  start_date: "2017-08-29"
+  end_date: "2018-08-29"
+  collection: "LC8_30_16D_STK-1"
+  bands:
+    - "NDVI"
+    - "EVI"
+    - "band1"
+    - "band2"
+    - "band3"
+    - "band4"
+    - "band5"
+    - "band6"
+    - "band7"
+    - "Fmask4"
+    
+model:
+  num_trees: 200
+  
+resources:
+  memsize: 80
+  multicores: 20
+
+files:
+  base_output_directory: "data/derived_data"

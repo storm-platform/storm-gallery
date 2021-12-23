@@ -1,10 +1,21 @@
 set.seed(777)
 
 #
-# 1. Loading the input geometries
+# General definitions.
 #
 
-# Cerrado biom geometry
+# Loading the workflow configurations
+workflow_config <- yaml::read_yaml("analysis/workflow.yaml")
+
+#  > Base output directory
+base_output_directory <-
+  fs::path(workflow_config$files$base_output_directory)
+
+#
+# 1. Loading the input geometries.
+#
+
+# Cerrado biome geometry
 cerrado_biom_geom <-
   sf::read_sf("data/raw_data/01-study-area_cerrado/cerrado-biome.shp")
 
@@ -13,20 +24,28 @@ datacube_grid_geom <-
   sf::read_sf("data/raw_data/02_study-area_datacube-grid/datacube-grid-landsat8.shp")
 
 #
-# 2. Calculating the intersection between the loaded geometries
+# 2. Calculating the intersection between the loaded geometries.
 #
 intersection_geom <-
   sf::st_intersection(datacube_grid_geom, cerrado_biom_geom)
 
 #
 # 3. Saving the result. For this case, we will save only the tile-id, used as a
-#    input to sits package to create the datacube.
+#    input to sits package to create the Data Cube.
 #
 
-# Selecting and saving the tile id results
+# Selecting the tile ids
 study_area_tile_ids <- data.frame(tile_id = intersection_geom$id)
 
-# Saving the Data Frame
-write.csv(study_area_tile_ids, file = "data/derived_data/study-area_tile-ids.csv")
+# Adding "0" to the tile ids
+# (To avoid errors in the Data Cube loading)
+study_area_tile_ids <- paste("0", study_area_tile_ids, sep = "")
 
-# ToDo: paste("0", study_area_tile_ids$tile_id, sep = "")
+# Creating and saving a Data Frame with the ids
+study_area_tile_ids <- data.frame(tile_id = study_area_tile_ids)
+
+# Saving the Data Frame
+output_directory <- base_output_directory / "study-area"
+fs::dir_create(output_directory)
+
+write.csv(study_area_tile_ids, file = output_directory / "study-area_tile-ids.csv")
