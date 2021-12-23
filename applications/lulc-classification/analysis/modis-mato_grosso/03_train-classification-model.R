@@ -40,4 +40,4 @@ svm_model_trained <- sits::sits_train(samples_ts, svm_model)
 #
 # 4. Saving the trained model
 #
-saveRDS(rfor_model_trained, file = output_directory / "svm-radial_magro-grosso_modis.rds")
+saveRDS(svm_model_trained, file = output_directory / "svm-radial_magro-grosso_modis.rds")
