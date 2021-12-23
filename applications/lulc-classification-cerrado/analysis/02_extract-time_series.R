@@ -15,7 +15,7 @@ base_output_directory <-
 # 1. Loading the Study Area Tile IDs.
 #
 study_area_tile_ids <-
-  read.csv(base_output_directory  / "study-area" / "study-area_tile-ids.csv")
+  readr::read_csv(base_output_directory  / "study-area" / "study-area_tile-ids.csv")
 
 #
 # 2. Defining the Data Cube.

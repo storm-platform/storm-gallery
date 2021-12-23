@@ -28,7 +28,7 @@ base_output_directory <-
 
 # Study area tiles reference
 study_area_tile_ids <-
-  read.csv(output_directory / "study-area" / "study-area_tile-ids.csv")
+  readr::read_csv(output_directory / "study-area" / "study-area_tile-ids.csv")
 
 
 # Trained Random Forest (trees = 200) model

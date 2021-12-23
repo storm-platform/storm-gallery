@@ -37,13 +37,6 @@ intersection_geom <-
 # Selecting the tile ids
 study_area_tile_ids <- data.frame(tile_id = intersection_geom$id)
 
-# Adding "0" to the tile ids
-# (To avoid errors in the Data Cube loading)
-study_area_tile_ids <- paste("0", study_area_tile_ids, sep = "")
-
-# Creating and saving a Data Frame with the ids
-study_area_tile_ids <- data.frame(tile_id = study_area_tile_ids)
-
 # Saving the Data Frame
 output_directory <- base_output_directory / "study-area"
 fs::dir_create(output_directory)
