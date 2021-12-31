@@ -31,7 +31,7 @@ annual_samples <- lulc::filter_annual_samples(samples_ts)
 
 
 #
-# 3. Creating the Random Forest Model (with 200 Trees)
+# 3. Creating the Random Forest Model
 #
 rfor_model <-
   sits::sits_rfor(num_trees = workflow_config$model$num_trees)
@@ -46,4 +46,4 @@ rfor_model_trained <- sits::sits_train(annual_samples, rfor_model)
 #
 # 5. Saving the trained model
 #
-saveRDS(rfor_model_trained, file = output_directory / "rfor200_cerrado_lc8.rds")
+saveRDS(rfor_model_trained, file = output_directory / "rfor_cerrado_lc8.rds")

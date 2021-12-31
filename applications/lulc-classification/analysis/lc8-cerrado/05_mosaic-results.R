@@ -72,7 +72,7 @@ lulc_raster_files_cropped <-
     file_path      = lulc_raster_files,
     shapefile_path = output_directory_geom_shp,
     output_dir     = output_directory_crop,
-    cores          = 12
+    cores          = workflow_config$resources$multicores
   )
 
 

@@ -1,17 +1,6 @@
 set.seed(777)
 
 #
-# CLI (Rscript 04_classify-lc8-datacube.R <TILE-NAME>)
-#
-
-# Loading the command arguments
-cmdargs <- commandArgs(trailingOnly = TRUE)
-
-# Extracting the Tile ID
-tile_id <- cmdargs[1]
-
-
-#
 # General definitions
 #
 
@@ -25,7 +14,7 @@ base_output_directory <-
 
 #  > Script specific output directory
 output_directory <-
-  base_output_directory / "lulc-classification" / tile_id
+  base_output_directory / "lulc-classification"
 
 fs::dir_create(output_directory)
 
@@ -38,9 +27,9 @@ study_area_tile_ids <-
   readr::read_csv(base_output_directory / "study-area" / "study-area_tile-ids.csv")
 
 
-# Trained Random Forest (trees = 200) model
+# Trained Random Forest model
 rfor_model_trained <-
-  readRDS(base_output_directory / "model" / "rfor200_cerrado_lc8.rds")
+  readRDS(base_output_directory / "model" / "rfor_cerrado_lc8.rds")
 
 #
 # 2. Loading the Data Cube
@@ -52,7 +41,7 @@ datacube <- sits::sits_cube(
   start_date = workflow_config$datacube$start_date,
   end_date   = workflow_config$datacube$end_date,
   bands      = workflow_config$datacube$bands,
-  tiles      = tile_id
+  tiles      = study_area_tile_ids$tile_id
 )
 
 
