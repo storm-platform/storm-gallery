@@ -15,8 +15,8 @@ model:
   num_trees: 200
 
 resources:
-  memsize: 80
-  multicores: 20
+  memsize: 48
+  multicores: 12
 
 files:
   base_input_directory: "data/raw_data/modis-mato_grosso"
