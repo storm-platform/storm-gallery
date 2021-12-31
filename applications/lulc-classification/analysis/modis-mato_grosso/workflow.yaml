@@ -11,9 +11,6 @@ datacube:
     - "blue_reflectance"
     - "pixel_reliability"
 
-model:
-  num_trees: 200
-
 resources:
   memsize: 48
   multicores: 12
