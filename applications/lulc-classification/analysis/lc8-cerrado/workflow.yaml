@@ -18,8 +18,8 @@ model:
   num_trees: 200
 
 resources:
-  memsize: 120
-  multicores: 30
+  memsize: 80
+  multicores: 20
 
 files:
   base_input_directory: "data/raw_data/lc8-cerrado"
