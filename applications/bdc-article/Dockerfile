@@ -22,15 +22,15 @@ RUN apt update --yes \
 #
 # Copying the package files.
 #
-COPY . /home/${NB_USER}/bdc-article
+COPY . bdc-article
 
 #
 # Installing the package dependencies.
 #
 RUN cd /home/${NB_USER}/bdc-article \
 	&& mamba env update --file environment.yml \
-	&& Rscript -e 'renv::restore(prompt=F)' \
-	&& Rscript -e 'IRkernel::installspec()' \
+	&& Rscript -e "renv::restore(prompt=F, library='/opt/conda/lib/R/library')" \
+	&& Rscript -e "IRkernel::installspec()" \
 	&& chown -R ${NB_UID}:${NB_GID} /home/${NB_USER}
 
 USER $NB_USER
