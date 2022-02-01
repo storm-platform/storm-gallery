@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "spectral-selector"
+version = "0.1.0"
+description = ""
+authors = ["Felipe Menino Carlos <felipe.carlos@inpe.br>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+numpy = "^1.22.0"
+Shapely = "^1.8.0"
+rasterio = "^1.2.10"
+pystac-client = "^0.3.1"
+geopandas = "^0.10.2"
+dynaconf = "^3.1.7"
+GDAL = "3.4.1"
+joblib = "^1.1.0"
+
+[tool.poetry.dev-dependencies]
+black = "^21.12b0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

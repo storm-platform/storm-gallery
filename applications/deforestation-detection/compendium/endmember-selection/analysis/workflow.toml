@@ -1,0 +1,83 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2021 Storm Gallery.
+#
+# storm-gallery is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+[general]
+#
+# Base input directory
+#
+input_dir = "data/raw_data"
+
+#
+# Base output directory
+#
+output_dir = "data/derived_data"
+
+[resources]
+#
+# Jobs used to generate the endmembers
+#
+n_jobs = 8
+
+[stac]
+#
+# STAC Service URL
+#
+url = "https://brazildatacube.dpi.inpe.br/stac/"
+
+[datacube]
+#
+# General data cube definitions
+#
+
+# Temporal extent.
+start_date = "2018-08-31"
+end_date = "2019-08-31"
+
+# Spatial extent.
+spatial_extent = [-65.75621064, -10.93897214, -64.73512012, -9.93967552]
+
+# Data Cube Collection (available in the Brazil Data Cube Platform).
+collection = "LC8_30_16D_STK-1"
+
+# Cloud Cover threshold.
+cloud_cover_threshold = 70  # less then
+
+# Spectral and cloud bands.
+cloud_band = "Fmask4"
+spectral_bands = ["band2", "band3", "band4", "band5", "band6", "band7"]
+
+# Data Cube CRS.
+crs = "+proj=aea +lat_0=-12 +lon_0=-54 +lat_1=-2 +lat_2=-22 +x_0=5000000 +y_0=10000000 +ellps=GRS80 +units=m +no_defs"
+
+[samples]
+#
+# GeoPackage general definitions
+#
+database_file = "data/raw_data/samples-database.gpkg"
+
+#
+# GeoPackage layers
+#
+
+# Deforestation samples.
+deforestation_samples_layer = "deforestation-samples"
+
+# Endmember samples
+endmember_samples_layers = ["water", "vegetation", "ground"]
+
+#
+# Endmember samples metadata
+#
+
+# Scene used in the sample collect.
+scene_id_reference = "LC8_30_16D_STK_v001_038047_2019-07-28_2019-08-12"
+
+[endmember]
+#
+# General definitions for endmember selection (percentage).
+#
+endmember_similarity_threshold = { vegetation = 30, ground = 30, water = 30 }

@@ -1,0 +1,21 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2021 Storm Gallery.
+#
+# storm-gallery is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+datacube:
+  collection: "LC8_30_16D_STK-1"
+
+  # Local cube definitions
+  delim: "_"
+  parse_info: ["X1", "X2", "X3", "X4", "X5", "tile", "date", "X6", "band"]
+
+resources:
+  memsize: 40
+  multicores: 10
+
+files:
+  base_input_directory: "data/raw_data"
+  base_output_directory: "data/derived_data"

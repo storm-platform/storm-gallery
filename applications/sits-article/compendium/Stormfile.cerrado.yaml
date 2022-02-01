@@ -1,0 +1,16 @@
+steps:
+  extract_tiles:
+    command: ["Rscript", "analysis/lc8-cerrado/01_define-study-area-tiles.R"]
+    depends: []
+  extract_ts:
+    command: ["Rscript", "analysis/lc8-cerrado/02_extract-time_series.R"]
+    depends: ["extract_tiles"]
+  train_model:
+    command: ["Rscript", "analysis/lc8-cerrado/03_train-classification-model.R"]
+    depends: ["extract_ts"]
+  classify:
+    command: ["Rscript", "analysis/lc8-cerrado/04_classify-lc8-datacube.R"]
+    depends: ["train_model"]
+  mosaic_raster:
+    command: ["Rscript", "analysis/lc8-cerrado/05_mosaic-results.R"]
+    depends: ["classify"]

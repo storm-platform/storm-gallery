@@ -1,0 +1,29 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2021 Storm Gallery.
+#
+# storm-gallery is free software; you can redistribute it and/or modify it
+# under the terms of the MIT License; see LICENSE file for more details.
+
+[general]
+#
+# Base input directory
+#
+input_dir = "data/raw_data"
+
+#
+# Base output directory
+#
+output_dir = "data/derived_data"
+
+[sample]
+#
+# Sampling size
+#
+sampling_size = 80
+
+[map]
+#
+# Deforestation map values semantics
+#
+pixel_class_semantic = { Deforestation = 1, Forest = 2, Non-Forest = 3 }
