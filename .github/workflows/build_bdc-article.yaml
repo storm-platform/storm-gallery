@@ -1,4 +1,4 @@
-name: build_sits-article
+name: build_bdc-article
 
 on:
   push:
@@ -20,20 +20,20 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Build and push (SITS Article)
+    - name: Build and push (BDC Article)
       uses: docker/build-push-action@v2
       with:
-        context: applications/sits-article/compendium
+        context: applications/bdc-article/compendium
         push: true
-        tags: stormproject/pkg-sits-article:0.1
+        tags: stormproject/pkg-bdc-article:0.1
 
     - name: Timestamp
-      run: mkdir -p build && date --rfc-3339=seconds > .github/log/last_build_sits-article.txt
+      run: mkdir -p build && date --rfc-3339=seconds > .github/log/last_build_bdc-article.txt
 
     - name: Commit and push
       uses: EndBug/add-and-commit@v7
       with:
-        add: ".github/log/last_build_sits-article.txt"
+        add: ".github/log/last_build_bdc-article.txt"
         push: true
         committer_name: GitHub Actions
         committer_email: actions@github.com

@@ -1,0 +1,107 @@
+name: build_deforestation-detection
+
+on:
+  push:
+
+jobs:
+  build-endmember-selection:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Login
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push (Deforestation Detection example - Endmember selection)
+      uses: docker/build-push-action@v2
+      with:
+        context: applications/deforestation-detection/compendium/endmember-selection
+        push: true
+        tags: stormproject/pkg-endmember-selection:0.1
+
+    - name: Timestamp
+      run: mkdir -p build && date --rfc-3339=seconds > .github/log/last_build_deforestation_endmember-selection.txt
+
+    - name: Commit and push
+      uses: EndBug/add-and-commit@v7
+      with:
+        add: ".github/log/last_build_deforestation_endmember-selection.txt"
+        push: true
+        committer_name: GitHub Actions
+        committer_email: actions@github.com
+
+  build-fraction-classification:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Login
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push (Deforestation Detection example - Fraction Datacube classification)
+      uses: docker/build-push-action@v2
+      with:
+        context: applications/deforestation-detection/compendium/fraction-classification
+        push: true
+        tags: stormproject/pkg-fraction-classification:0.1
+
+    - name: Timestamp
+      run: mkdir -p build && date --rfc-3339=seconds > .github/log/last_build_deforestation_fraction-classification.txt
+
+    - name: Commit and push
+      uses: EndBug/add-and-commit@v7
+      with:
+        add: ".github/log/last_build_deforestation_fraction-classification.txt"
+        push: true
+        committer_name: GitHub Actions
+        committer_email: actions@github.com
+
+  build-evaluate-classification:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Login
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push (Deforestation Detection example - Evaluate classification)
+      uses: docker/build-push-action@v2
+      with:
+        context: applications/deforestation-detection/compendium/evaluate-classification
+        push: true
+        tags: stormproject/pkg-evaluate-classification:0.1
+
+    - name: Timestamp
+      run: mkdir -p build && date --rfc-3339=seconds > .github/log/last_build_deforestation_evaluate-classification.txt
+
+    - name: Commit and push
+      uses: EndBug/add-and-commit@v7
+      with:
+        add: ".github/log/last_build_deforestation_evaluate-classification.txt"
+        push: true
+        committer_name: GitHub Actions
+        committer_email: actions@github.com
