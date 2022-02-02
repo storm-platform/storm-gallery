@@ -58,7 +58,7 @@ items = list(
 # 3. Generating the brick VRTs files with the spectral bands reference
 #
 output_brick_dir = output_dir / "brick"
-output_brick_dir.mkdir(exist_ok=True)
+output_brick_dir.mkdir(exist_ok=True, parents=True)
 
 bricks = virtual.item2brick_vrt(
     items, settings.datacube.spectral_bands, output_brick_dir
@@ -68,7 +68,7 @@ bricks = virtual.item2brick_vrt(
 # 4. Generating the stack VRT files with the cloud band reference
 #
 output_stack_dir = output_dir / "stack"
-output_stack_dir.mkdir(exist_ok=True)
+output_stack_dir.mkdir(exist_ok=True, parents=True)
 
 stacks = virtual.item2stack_vrt(items, [settings.datacube.cloud_band], output_stack_dir)
 
@@ -76,3 +76,4 @@ stacks = virtual.item2stack_vrt(items, [settings.datacube.cloud_band], output_st
 # 5. Saving the generated bricks VRTs
 #
 (pd.DataFrame(dict(bricks=bricks)).to_csv(output_brick_dir / "index.csv"))
+
