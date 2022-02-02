@@ -10,8 +10,7 @@
 #
 # Start the Spectral Unmixing endmember selection
 #
-BASE_TARGET_DEPS := data/derived_data/brick/%.csv data/derived_data/brick/%.vrt data/derived_data/stack/%.vrt
-BASE_TARGET_DEPS += data/derived_data/endmember/%.json
+BASE_TARGET_DEPS := data/derived_data/endmember/%.json
 
 start: $(BASE_TARGET_DEPS)  ## Run the complete LULC classification workflow
 	@echo "Classification workflow finished"
@@ -25,7 +24,6 @@ clean:  ## Clean the generated results
 
 # Generate the base VRTs for the Endmember selection
 ENDMEMBER_TARGET_OUTS := data/derived_data/brick/%.csv data/derived_data/brick/%.vrt data/derived_data/stack/%.vrt
-ENDMEMBER_TARGET_OUTS += data/derived_data/endmember/%.json
 
 $(ENDMEMBER_TARGET_OUTS):
 	@echo "Creating the output directory"
