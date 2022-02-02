@@ -8,7 +8,7 @@
 
 docker run --rm -ti \
 	--name pkg-endmember-selection \
-	--publish 8888:8888 \
-	--volume ${PWD}:/home/jovyan/endmember-selection \
+	--publish 8889:8888 \
+	--volume ${PWD}:/home/${NB_USER}/endmember-selection \
 	stormproject/pkg-endmember-selection:0.1
 
