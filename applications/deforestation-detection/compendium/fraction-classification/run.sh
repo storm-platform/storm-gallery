@@ -6,9 +6,9 @@
 # storm-gallery is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-docker run --rm -ti \
+docker run -d -ti \
 	--name pkg-fraction-classification \
 	--publish 8888:8888 \
-	--volume ${PWD}:/home/${NB_USER}/pkg-fraction-classification \
+	--volume ${PWD}/data:/home/jovyan/fraction-classification/data \
 	stormproject/pkg-fraction-classification:0.1
 

@@ -30,6 +30,7 @@ COPY . /home/${NB_USER}/fraction-classification
 RUN cd /home/${NB_USER}/fraction-classification \
 	&& mamba env update --file environment.yml \
 	&& Rscript -e "renv::restore(prompt=F, library='/opt/conda/lib/R/library')" \
+	&& Rscript -e "renv::install('.', type='source')" \
 	&& Rscript -e "IRkernel::installspec()" \
 	&& chown -R ${NB_UID}:${NB_GID} /home/${NB_USER}
 
