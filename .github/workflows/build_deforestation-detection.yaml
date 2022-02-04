@@ -27,17 +27,6 @@ jobs:
         push: true
         tags: stormproject/pkg-endmember-selection:0.1
 
-    - name: Timestamp
-      run: mkdir -p build && date --rfc-3339=seconds > .github/log/last_build_deforestation_endmember-selection.txt
-
-    - name: Commit and push
-      uses: EndBug/add-and-commit@v7
-      with:
-        add: ".github/log/last_build_deforestation_endmember-selection.txt"
-        push: true
-        committer_name: GitHub Actions
-        committer_email: actions@github.com
-
   build-fraction-classification:
     runs-on: ubuntu-latest
 
@@ -61,17 +50,6 @@ jobs:
         push: true
         tags: stormproject/pkg-fraction-classification:0.1
 
-    - name: Timestamp
-      run: mkdir -p build && date --rfc-3339=seconds > .github/log/last_build_deforestation_fraction-classification.txt
-
-    - name: Commit and push
-      uses: EndBug/add-and-commit@v7
-      with:
-        add: ".github/log/last_build_deforestation_fraction-classification.txt"
-        push: true
-        committer_name: GitHub Actions
-        committer_email: actions@github.com
-
   build-evaluate-classification:
     runs-on: ubuntu-latest
 
@@ -94,14 +72,3 @@ jobs:
         context: applications/deforestation-detection/compendium/evaluate-classification
         push: true
         tags: stormproject/pkg-evaluate-classification:0.1
-
-    - name: Timestamp
-      run: mkdir -p .github/log/ && date --rfc-3339=seconds > .github/log/last_build_deforestation_evaluate-classification.txt
-
-    - name: Commit and push
-      uses: EndBug/add-and-commit@v7
-      with:
-        add: ".github/log/last_build_deforestation_evaluate-classification.txt"
-        push: true
-        committer_name: GitHub Actions
-        committer_email: actions@github.com
