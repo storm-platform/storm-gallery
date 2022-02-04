@@ -99,29 +99,6 @@
       "Hash": "e031418365a7f7a766181ab5a41a5716",
       "Requirements": []
     },
-    "RStoolbox": {
-      "Package": "RStoolbox",
-      "Version": "0.2.6",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "22764dcf71e4dd33ceef26ef065b8d6f",
-      "Requirements": [
-        "Rcpp",
-        "RcppArmadillo",
-        "XML",
-        "caret",
-        "codetools",
-        "doParallel",
-        "foreach",
-        "geosphere",
-        "ggplot2",
-        "raster",
-        "reshape2",
-        "rgdal",
-        "rgeos",
-        "sp"
-      ]
-    },
     "Rcpp": {
       "Package": "Rcpp",
       "Version": "1.0.8",
@@ -156,14 +133,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "0cf10dab0d023d5b46a5a14387556891",
-      "Requirements": []
-    },
-    "XML": {
-      "Package": "XML",
-      "Version": "3.99-0.8",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "d493b952a9073c62f72392a673d7c548",
       "Requirements": []
     },
     "askpass": {
@@ -310,17 +279,6 @@
       "Hash": "cf6b206a045a684728c3267ef7596190",
       "Requirements": []
     },
-    "doParallel": {
-      "Package": "doParallel",
-      "Version": "1.0.16",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "2dc413572eb42475179bfe0afabd2adf",
-      "Requirements": [
-        "foreach",
-        "iterators"
-      ]
-    },
     "dplyr": {
       "Package": "dplyr",
       "Version": "1.0.7",
@@ -461,40 +419,6 @@
       "Hash": "3f6bcfb0ee5d671d9fd1893d2faa79cb",
       "Requirements": []
     },
-    "geojsonsf": {
-      "Package": "geojsonsf",
-      "Version": "2.0.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "8bf70c1328f68761115943b68e565dc6",
-      "Requirements": [
-        "Rcpp",
-        "geometries",
-        "jsonify",
-        "rapidjsonr",
-        "sfheaders"
-      ]
-    },
-    "geometries": {
-      "Package": "geometries",
-      "Version": "0.2.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "be29054e97e756ade56d13a89c6d5243",
-      "Requirements": [
-        "Rcpp"
-      ]
-    },
-    "geosphere": {
-      "Package": "geosphere",
-      "Version": "1.5-14",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "1ce6e028f3d056dad1ea9c3c0a5444bf",
-      "Requirements": [
-        "sp"
-      ]
-    },
     "ggplot2": {
       "Package": "ggplot2",
       "Version": "3.3.5",
@@ -612,17 +536,6 @@
       "Repository": "CRAN",
       "Hash": "64778782a89480e9a644f69aad9a2877",
       "Requirements": []
-    },
-    "jsonify": {
-      "Package": "jsonify",
-      "Version": "1.2.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "f435875f0eb7de52ade944ed82ee9089",
-      "Requirements": [
-        "Rcpp",
-        "rapidjsonr"
-      ]
     },
     "jsonlite": {
       "Package": "jsonlite",
@@ -922,12 +835,12 @@
         "rlang"
       ]
     },
-    "rapidjsonr": {
-      "Package": "rapidjsonr",
-      "Version": "1.2.0",
+    "randomForest": {
+      "Package": "randomForest",
+      "Version": "4.7-1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "88b9f48c93d17cdb811b54079a6a414f",
+      "Hash": "dd4f861c0353a869964024886c93b7d5",
       "Requirements": []
     },
     "rappdirs": {
@@ -1024,16 +937,6 @@
         "sp"
       ]
     },
-    "rgeos": {
-      "Package": "rgeos",
-      "Version": "0.5-9",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "7cfa4f73a070042ecf141d5c1d1bfcae",
-      "Requirements": [
-        "sp"
-      ]
-    },
     "rlang": {
       "Package": "rlang",
       "Version": "0.4.12",
@@ -1122,41 +1025,29 @@
         "units"
       ]
     },
-    "sfheaders": {
-      "Package": "sfheaders",
-      "Version": "0.4.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "c1bd5fbd6bed3c16a20df15d9bc20c55",
-      "Requirements": [
-        "Rcpp",
-        "geometries"
-      ]
-    },
     "sits": {
       "Package": "sits",
-      "Version": "0.16.2",
+      "Version": "0.15.1-1",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "e-sensing",
       "RemoteRepo": "sits",
-      "RemoteRef": "v0.16.2",
-      "RemoteSha": "2f6646b3237444f58e26cadfe04f95b67c34d14d",
-      "Hash": "665240d20db9b17fb53f9dca0ed9184c",
+      "RemoteRef": "v0.15.1-1",
+      "RemoteSha": "38ca8b0690d9a84a148c87c3e3de2a45ea1c3e07",
+      "Hash": "bfa31849b0a95f90225ec426e94fb88f",
       "Requirements": [
         "Rcpp",
         "RcppArmadillo",
         "data.table",
         "dplyr",
         "gdalUtilities",
-        "geojsonsf",
         "ggplot2",
-        "jsonlite",
         "knitr",
         "lubridate",
         "magrittr",
         "purrr",
+        "raster",
         "rstac",
         "sf",
         "slider",
@@ -1178,14 +1069,6 @@
         "vctrs",
         "warp"
       ]
-    },
-    "snow": {
-      "Package": "snow",
-      "Version": "0.4-4",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "40b74690debd20c57d93d8c246b305d4",
-      "Requirements": []
     },
     "sp": {
       "Package": "sp",
@@ -1253,15 +1136,15 @@
     },
     "terra": {
       "Package": "terra",
-      "Version": "1.5-18",
+      "Version": "1.5-0",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "rspatial",
       "RemoteRepo": "terra",
-      "RemoteRef": "master",
-      "RemoteSha": "92b5ed6b570f2fa79b77c62ef043920283d4d1d5",
-      "Hash": "5850805a0ca9bfba875ce8359ad2213d",
+      "RemoteRef": "331d0595ab9c8a5c8ee2e928e3829c6623d11eb1",
+      "RemoteSha": "331d0595ab9c8a5c8ee2e928e3829c6623d11eb1",
+      "Hash": "706637bf7d6bde992d6a9f90def479a9",
       "Requirements": [
         "Rcpp"
       ]
