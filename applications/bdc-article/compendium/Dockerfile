@@ -27,10 +27,24 @@ COPY . bdc-article
 #
 # Installing the package dependencies.
 #
-RUN cd /home/${NB_USER}/bdc-article \
+RUN cd bdc-article \
 	&& mamba env update --file environment.yml \
-	&& Rscript -e "renv::restore(prompt=F, library='/opt/conda/lib/R/library')" \
+	# Preparing the Jupyter Notebook kernel
 	&& Rscript -e "IRkernel::installspec()" \
+	# Installing sits 0.15.1-1 and terra 1.4.22
+	# note (2022/02/10): We remove the renv to avoid problems with terra. At this point
+	#                    the sits r package have some problems with the newest terra 
+	#		     version and the renv was ignoring this and change the versions.
+	&& Rscript -e "devtools::install_github('e-sensing/sits@v0.15.1-1')" \
+	&& Rscript -e "devtools::install_version('reticulate', version = '1.24', repos = c('https://vps.fmvz.usp.br/CRAN/'), upgrade = 'never')" \
+        && Rscript -e "devtools::install_version('keras',  version = '2.8.0',  repos = c('https://vps.fmvz.usp.br/CRAN/'), upgrade = 'never')" \
+	&& Rscript -e "devtools::install_version('tidyr',  version = '1.2.0',  repos = c('https://vps.fmvz.usp.br/CRAN/'),  upgrade = 'never')" \
+        && Rscript -e "devtools::install_version('raster', version = '3.3-13', repos = c('https://vps.fmvz.usp.br/CRAN/'), upgrade='never')" \
+	&& Rscript -e "devtools::install_version('terra',  version = '1.4.22', repos = c('https://vps.fmvz.usp.br/CRAN/'), upgrade = 'never')" \ 
 	&& chown -R ${NB_UID}:${NB_GID} /home/${NB_USER}
 
 USER $NB_USER
+
+RUN echo "reticulate::install_miniconda()" | R --no-save && \
+    echo "keras::install_keras()" | R --no-save
+
