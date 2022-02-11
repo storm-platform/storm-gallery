@@ -9,6 +9,6 @@
 docker run -d -ti \
 	--name pkg-bdc-article \
 	--publish 8888:8888 \
-	--volume ${PWD}:/home/${NB_USER}/pkg-bdc-article \
+	--volume ${PWD}:/home/jovyan/bdc-article \
 	stormproject/pkg-bdc-article:0.1
 
