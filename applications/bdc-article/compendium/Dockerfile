@@ -36,15 +36,11 @@ RUN cd bdc-article \
 	#                    the sits r package have some problems with the newest terra 
 	#		     version and the renv was ignoring this and change the versions.
 	&& Rscript -e "devtools::install_github('e-sensing/sits@v0.15.1-1')" \
-	&& Rscript -e "devtools::install_version('reticulate', version = '1.24', repos = c('https://vps.fmvz.usp.br/CRAN/'), upgrade = 'never')" \
-        && Rscript -e "devtools::install_version('keras',  version = '2.8.0',  repos = c('https://vps.fmvz.usp.br/CRAN/'), upgrade = 'never')" \
 	&& Rscript -e "devtools::install_version('tidyr',  version = '1.2.0',  repos = c('https://vps.fmvz.usp.br/CRAN/'),  upgrade = 'never')" \
+	&& Rscript -e "devtools::install_version('randomForest', version = '4.7-1', repos = c('https://vps.fmvz.usp.br/CRAN/'), upgrade='never')" \
         && Rscript -e "devtools::install_version('raster', version = '3.3-13', repos = c('https://vps.fmvz.usp.br/CRAN/'), upgrade='never')" \
 	&& Rscript -e "devtools::install_version('terra',  version = '1.4.22', repos = c('https://vps.fmvz.usp.br/CRAN/'), upgrade = 'never')" \ 
 	&& chown -R ${NB_UID}:${NB_GID} /home/${NB_USER}
 
 USER $NB_USER
-
-RUN echo "reticulate::install_miniconda()" | R --no-save && \
-    echo "keras::install_keras()" | R --no-save
 

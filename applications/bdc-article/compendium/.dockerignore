@@ -31,4 +31,4 @@ docker-compose-dev.yml
 
 Procfile*
 
-data/derived_data
+data/
