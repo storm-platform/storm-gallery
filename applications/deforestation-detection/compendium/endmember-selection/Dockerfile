@@ -38,8 +38,6 @@ COPY . /home/${NB_USER}/endmember-selection
 RUN cd /home/${NB_USER}/endmember-selection \
 	&& mamba env update -f environment.yml \
     	&& mamba run --name base pip install . \
-	&& mamba run --name base python -m pip install certifi-system-store \
-	&& /opt/conda/bin/python -m certifi -v \
 	&& chown -R ${NB_UID}:${NB_GID} /home/${NB_USER}
 
 USER $NB_USER
