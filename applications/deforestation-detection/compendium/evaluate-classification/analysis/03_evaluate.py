@@ -40,6 +40,9 @@ samples = pd.read_csv(
 #
 sampled_samples = samples.groupby("label").sample(settings.sample.sampling_size)
 
+# filtering the NA values
+sampled_samples = sampled_samples.dropna()
+
 #
 # 3. Evaluating!
 #

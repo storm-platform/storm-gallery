@@ -37,9 +37,7 @@ COPY . /home/${NB_USER}/evaluate-classification
 #
 RUN cd /home/${NB_USER}/evaluate-classification \
 	&& mamba env update -f environment.yml \
-    	&& mamba run --name base pip install . \
-	&& mamba run --name base python -m pip install certifi-system-store \
-	&& /opt/conda/bin/python -m certifi -v \
+	&& mamba run --name base pip install . \
 	&& chown -R ${NB_UID}:${NB_GID} /home/${NB_USER}
 
 USER $NB_USER
