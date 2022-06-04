@@ -81,6 +81,20 @@ fraction_cube <- sits::sits_cube(
   parse_info = workflow_config$datacube$parse_info
 )
 
+# Fixing the cube extents per tile
+fraction_cube$file_info <- lapply(fraction_cube$file_info, function (row) {
+  
+  # selecting only the extents-related columns
+  row_columns <- colnames(row)
+  extent_columns <- row_columns[
+    !(row_columns %in% c('fid', 'band', 'date', 'path'))
+  ]
+  # forcing all values to be equal (the dirty way)
+  dplyr::mutate(row, dplyr::across(extent_columns, function(coldata) {
+    coldata[[1]]
+  }))
+})
+
 #
 # 3. Extracting the Time Series from the Data Cube
 #
@@ -88,7 +102,7 @@ fraction_cube <- sits::sits_cube(
 # Extracting the Time Series
 samples_ts <- sits::sits_get_data(
   cube       = fraction_cube,
-  file       = samples_file,
+  samples    = samples_file,
   multicores = workflow_config$resources$multicores
 )
 
@@ -98,7 +112,6 @@ samples_ts <-
     any(is.na(x))
   }), ]
 
-
 #
 # 4. Training the Machine Learning Model
 #
@@ -107,7 +120,7 @@ samples_ts <-
 ml_model <- sits::sits_rfor(num_trees = 200)
 
 # Training!
-ml_model <- sits::sits_train(data      = samples_ts,
+ml_model <- sits::sits_train(samples   = samples_ts,
                              ml_method = ml_model)
 
 #

@@ -1,12 +1,35 @@
 Package: fraction
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Title: Fraction Cube classification package
+Version: 0.0.1
+Authors@R: c(person('Felipe', 'Carlos', role = c('aut'), email = 'felipe.carlos@inpe.br'),
+             person('Felipe', 'Souza', role = c('aut'), email = 'felipe.carvalho@inpe.br'),
+             )
+Description: This package is the materialization of a Research Compendium (RC), 
+       created based on the annotations made by Marwick et al. <10.1080/00031305.2017.1375986>. 
+       In the RC, a complete application is available in which the detection of deforested areas 
+       in the Amazon rainforest is performed. To detect deforested areas, the classification of 
+       time series extracted from cubes of fraction images is applied. The classification is done 
+       with Machine Learning algorithms. The Linear Spectral Mixture Model is used to generate 
+       the fraction images.
+Encoding: UTF-8
+Language: en-US
+Depends: R (>= 4.0.0)
+URL: https://github.com/storm-platform/storm-gallery
+BugReports: https://github.com/storm-platform/storm-gallery/issues
 License: MIT + file LICENSE
 ByteCompile: true
-Encoding: UTF-8
 LazyData: true
+Imports:
+    RStoolbox,
+    raster,
+    snow,
+    dplyr,
+    sits (>= 1.0.0)
+    yaml,
+    fs,
+    randomForest,
+    sf,
+    jsonlite,
+    gdalUtilities
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
