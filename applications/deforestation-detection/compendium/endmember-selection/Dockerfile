@@ -11,6 +11,11 @@ FROM jupyter/base-notebook:lab-3.2.8
 EXPOSE 8888
 
 #
+# Fixing SSL error (https://github.com/brazil-data-cube/stac.py/issues/112)
+#
+ENV CURL_CA_BUNDLE /etc/ssl/certs/ca-certificates.crt
+
+#
 # Installing system packages
 #
 USER root
