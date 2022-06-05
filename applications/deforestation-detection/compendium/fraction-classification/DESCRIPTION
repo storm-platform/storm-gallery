@@ -24,7 +24,7 @@ Imports:
     raster,
     snow,
     dplyr,
-    sits (>= 1.0.0)
+    sits (>= 1.0.0),
     yaml,
     fs,
     randomForest,
