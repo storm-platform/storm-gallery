@@ -43,7 +43,7 @@ datacube <- sits::sits_cube(
 #
 samples_ts <- sits::sits_get_data(
   cube       = datacube,
-  file       = base_input_directory / "03_ground-truth_samples/samples.csv",
+  samples    = base_input_directory / "03_ground-truth_samples/samples.csv",
   multicores = workflow_config$resources$multicores
 )
 
