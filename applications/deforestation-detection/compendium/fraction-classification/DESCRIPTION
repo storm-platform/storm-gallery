@@ -1,5 +1,5 @@
 Package: fraction
-Title: Fraction Cube classification package
+Title: Deforestation detection Research Compendium
 Version: 0.0.1
 Authors@R: c(person('Felipe', 'Carlos', role = c('aut'), email = 'felipe.carlos@inpe.br'),
              person('Felipe', 'Souza', role = c('aut'), email = 'felipe.carvalho@inpe.br'),
