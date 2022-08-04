@@ -7,11 +7,14 @@
 sample_temporal_extents(samples)
 }
 \arguments{
-\item{...}{...}
+\item{samples}{a \code{sits_tibble} with the time series with the
+training samples.}
 }
 \value{
-todo
+a \code{data.frame} with start_date and end_date of each time series
+period.
 }
 \description{
-description
+This function creates a data.frame with the start and end dates
+of each time series period.
 }
