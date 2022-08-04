@@ -69,7 +69,7 @@ fs::dir_create(output_directory_crop)
 # Cropping the raster files
 lulc_raster_files_cropped <-
   lulc::crop_tiles(
-    file_path      = lulc_raster_files,
+    files_path      = lulc_raster_files,
     shapefile_path = output_directory_geom_shp,
     output_dir     = output_directory_crop,
     cores          = workflow_config$resources$multicores
@@ -86,5 +86,5 @@ output_directory_mosaic <- output_directory / "mosaic"
 fs::dir_create(output_directory_mosaic)
 
 # Making the mosaic
-lulc::mosaic_tiles(file_path   = names(lulc_raster_files_cropped),
+lulc::mosaic_tiles(files_path   = names(lulc_raster_files_cropped),
                    output_file = output_directory_mosaic / "cerrado.tif")

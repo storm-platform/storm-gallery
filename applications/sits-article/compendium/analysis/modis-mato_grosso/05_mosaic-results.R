@@ -92,7 +92,7 @@ lapply(lulc_generated_years, function(year_row) {
   # Cropping the raster files
   lulc_raster_files_cropped <-
     lulc::crop_tiles(
-      file_path      = lulc_raster_files,
+      files_path      = lulc_raster_files,
       shapefile_path = study_area_geom_shp,
       output_dir     = output_directory_crop,
       cores          = workflow_config$resources$multicores
@@ -104,7 +104,7 @@ lapply(lulc_generated_years, function(year_row) {
 
   # Making the mosaic
   lulc::mosaic_tiles(
-    file_path   = unlist(lulc_raster_files_cropped, use.names = FALSE),
+    files_path   = unlist(lulc_raster_files_cropped, use.names = FALSE),
     output_file = output_directory_mosaic / paste0("mato-grosso", "_", current_year, ".tif")
   )
 })
