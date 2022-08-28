@@ -5,15 +5,28 @@
 # storm-gallery is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-.PHONY: start clean help
+.PHONY: start clean help buildenv startenv
+
+#
+# Infrastructure commands
+#
+buildenv:  ## Build the experiment docker environment
+	docker build --no-cache -t "stormproject/pkg-endmember-selection:0.1" .
+
+startenv:  ## Start the experiment docker environment
+	docker run -d -ti \
+	--name pkg-endmember-selection \
+	--publish 8888:8888 \
+	--volume ${PWD}/data/derived_data/:/home/jovyan/endmember-selection/data/derived_data \
+	stormproject/pkg-endmember-selection:0.1
 
 #
 # Start the Spectral Unmixing endmember selection
 #
 BASE_TARGET_DEPS := data/derived_data/endmember/%.json
 
-start: $(BASE_TARGET_DEPS)  ## Run the complete LULC classification workflow
-	@echo "Classification workflow finished"
+start: $(BASE_TARGET_DEPS)  ## Run the complete workflow
+	@echo "Endmember selection workflow finished"
 
 clean:  ## Clean the generated results
 	rm -rf data/derived_data

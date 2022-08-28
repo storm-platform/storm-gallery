@@ -46,4 +46,3 @@ RUN cd /home/${NB_USER}/endmember-selection \
 	&& chown -R ${NB_UID}:${NB_GID} /home/${NB_USER}
 
 USER $NB_USER
-
