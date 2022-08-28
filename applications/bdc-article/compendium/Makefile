@@ -5,7 +5,20 @@
 # storm-gallery is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-.PHONY: extract_ts lulc_* start clean help
+.PHONY: extract_ts lulc_* start clean help buildenv startenv
+
+#
+# Infrastructure commands
+#
+buildenv:
+	docker build --no-cache -t "stormproject/pkg-bdc-article:0.1" .
+
+startenv:
+	docker run -d -ti \
+	--name pkg-bdc-article \
+	--publish 8888:8888 \
+	--volume ${PWD}:/home/jovyan/bdc-article \
+	stormproject/pkg-bdc-article:0.1
 
 #
 # Start the LULC classification workflow
