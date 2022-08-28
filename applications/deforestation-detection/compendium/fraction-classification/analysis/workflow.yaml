@@ -13,8 +13,8 @@ datacube:
   parse_info: ["X1", "X2", "X3", "X4", "X5", "tile", "date", "X6", "band"]
 
 resources:
-  memsize: 40
-  multicores: 10
+  memsize: 20
+  multicores: 6
 
 files:
   base_input_directory: "data/raw_data"

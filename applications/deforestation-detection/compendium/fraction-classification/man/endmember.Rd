@@ -7,11 +7,12 @@
 as.endmember.data.frame(endmember_definition)
 }
 \arguments{
-\item{...}{...}
+\item{endmember_definition}{a \code{list} with the endmembers}
 }
 \value{
-todo
+a \code{data.frame} with the endmembers defined.
 }
 \description{
-description
+This function transforms an endmember named list into a
+data.frame
 }

@@ -2,16 +2,28 @@
 % Please edit documentation in R/mesma.R
 \name{mesma}
 \alias{mesma}
-\title{Crop Raster files by shapefile extents}
+\title{Generate fraction images applying the mesma linear mixture model.}
 \usage{
 mesma(raster_in, raster_out, endmember, ..., multicores = 4)
 }
 \arguments{
-\item{...}{...}
+\item{raster_in}{a \code{character} with the path to the input Raster Brick.}
+
+\item{raster_out}{a \code{character} with the path to the output Raster Brick.}
+
+\item{endmember}{a \code{data.frame} with the definitions of the endmembers.}
+
+\item{...}{extra options for the job generator function (\code{make_jobs}).}
+
+\item{multicores}{a \code{numeric} value defining the number of CPU cores to
+be used to generate fraction images.}
 }
 \value{
 todo
 }
 \description{
-description
+This function generates fraction images using mesma mixture model.
+To calculate the endmember fractions, the non-negative least squares (NNLS)
+solver is used. The NNLS implementation was made by Jakob Schwalb-Willmann in
+RStoolbox package (licensed as GPL>=3).
 }

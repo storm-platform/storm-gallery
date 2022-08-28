@@ -5,7 +5,20 @@
 # storm-gallery is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-.PHONY: start clean help
+.PHONY: start clean help buildenv startenv
+
+#
+# Infrastructure commands
+#
+buildenv:  ## Build the experiment docker environment
+	docker build --no-cache -t "stormproject/pkg-fraction-classification:0.1" .
+
+startenv:  ## Start the experiment docker environment
+	docker run -d -ti \
+		--name pkg-fraction-classification \
+		--publish 8888:8888 \
+		--volume ${PWD}/data:/home/jovyan/fraction-classification/data \
+		stormproject/pkg-fraction-classification:0.1
 
 #
 # Start the Deforestation detection classification workflow

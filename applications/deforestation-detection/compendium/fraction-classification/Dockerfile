@@ -31,7 +31,6 @@ RUN cd fraction-classification \
         && mamba env update --file environment.yml \
         # Preparing the Jupyter Notebook kernel
         && Rscript -e "IRkernel::installspec()" \
-        && Rscript -e "install.packages('renv', repos = 'http://cran.us.r-project.org')" \
         && Rscript -e "renv::restore(prompt=F)" \
         && Rscript -e "devtools::install()" \
         && chown -R ${NB_UID}:${NB_GID} /home/${NB_USER}

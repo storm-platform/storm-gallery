@@ -5,6 +5,61 @@
 # storm-gallery is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
+#' @title Parallel job process using Snowball (Internal method with specific cluster
+#' configuration method).
+#'
+#' @rdname apply-custer
+#'
+#' @description This function applies a data into a parallel function.
+#'
+#' @param cl a \code{Snowball cluster object}.
+#' @param x a \code{list} of objects to be processed.
+#' @param fun a \code{function} to be executed in a parallel way based on the data
+#' defined.
+#' @param ... extra options for the job function handler.
+#'
+#' @return a \code{list} with the description of the executed job.
+#'
+.apply_cluster <- function(cl, x, fun, ..., .quiet = FALSE) {
+  if (!.quiet)
+    pb <- txtProgressBar(max = length(x) + 1, style = 3)
+
+  argfun <- function(i) {
+    if (!.quiet)
+      setTxtProgressBar(pb, i)
+    c(list(x[[i]]), list(...))
+  }
+
+  if (!is.null(cl)) {
+    res <- snow::dynamicClusterApply(cl, fun, length(x), argfun)
+  } else {
+    res <- lapply(x, function(i) {
+      do.call(fun, args = argfun(i))
+    })
+  }
+
+  if (!.quiet) {
+    setTxtProgressBar(pb, length(x) + 1)
+    close(pb)
+  }
+
+  return(res)
+}
+
+
+#' @title Parallel worker unit function to generate fraction image.
+#'
+#' @rdname mixture-model
+#'
+#' @description This function calculates a fraction image for a piece of a
+#' Raster Brick.
+#'
+#' @param job  a \code{list} with the definitions of the worker job to be executed
+#' in the function.
+#' @param em a \code{data.frame} with the definitions of the endmembers.
+#'
+#' @return a \code{list} with the description of the executed job.
+#'
 do_mixture_model <- function(job, em) {
   b <- raster::stack(job$f)
 
@@ -34,6 +89,23 @@ do_mixture_model <- function(job, em) {
 }
 
 
+#' @title Generate job objects.
+#'
+#' @rdname make-jobs
+#'
+#' @description This function generates mesma job objects.
+#'
+#' @param f  a \code{character} with the path to the image to be processed.
+#' @param dtype_out a \code{character} describing the output data type.
+#' @param no_data_out a \code{numeric} value to used as the default no data value
+#' in the generated raster.
+#' @param gdal_options a \code{character} with extra options for the GDAL.
+#' @param data_factor a \code{numeric} value defining the multiplication factor
+#' for the image pixel values.
+#' @param endmember a \code{data.frame} with the endmembers.
+#'
+#' @return a \code{list} with the description of the executed job.
+#'
 make_jobs <- function(f,
                       dtype_out    = "Int16",
                       no_data_out  = -9999,
@@ -69,34 +141,26 @@ make_jobs <- function(f,
   return(jobs)
 }
 
-
-.apply_cluster <- function(cl, x, fun, ..., .quiet = FALSE) {
-  if (!.quiet)
-    pb <- txtProgressBar(max = length(x) + 1, style = 3)
-
-  argfun <- function(i) {
-    if (!.quiet)
-      setTxtProgressBar(pb, i)
-    c(list(x[[i]]), list(...))
-  }
-
-  if (!is.null(cl)) {
-    res <- snow::dynamicClusterApply(cl, fun, length(x), argfun)
-  } else {
-    res <- lapply(x, function(i) {
-      do.call(fun, args = argfun(i))
-    })
-  }
-
-  if (!.quiet) {
-    setTxtProgressBar(pb, length(x) + 1)
-    close(pb)
-  }
-
-  return(res)
-}
-
-
+#' @title Parallel job process using Snowball (Internal method with specific cluster
+#' configuration method).
+#'
+#' @rdname do-parallel-jobs
+#'
+#' @description This function generates mesma job objects.
+#'
+#' @param cl a \code{Snowball cluster object}.
+#' @param x a \code{list} of objects to be processed.
+#' @param fun a \code{function} to be executed in a parallel way based on the data
+#' defined.
+#' @param no_data_out a \code{numeric} value to used as the default no data value
+#' in the generated raster.
+#' @param gdal_options a \code{character} with extra options for the GDAL.
+#' @param data_factor a \code{numeric} value defining the multiplication factor
+#' for the image pixel values.
+#' @param endmember a \code{data.frame} with the endmembers.
+#'
+#' @return a \code{list} with the description of the executed job.
+#'
 do_parallel_jobs <-
   function(file_out,
            jobs,
@@ -126,16 +190,22 @@ do_parallel_jobs <-
     return(invisible(NULL))
   }
 
-#' @title Crop Raster files by shapefile extents
+
+#' @title Generate fraction images applying the mesma linear mixture model.
 #'
 #' @rdname mesma
 #'
-#' @description
-#' description
+#' @description This function generates fraction images using mesma mixture model.
+#' To calculate the endmember fractions, the non-negative least squares (NNLS)
+#' solver is used. The NNLS implementation was made by Jakob Schwalb-Willmann in
+#' RStoolbox package (licensed as GPL>=3).
 #'
-#' @param ... ...
-#'
-#' @param ... ...
+#' @param raster_in a \code{character} with the path to the input Raster Brick.
+#' @param raster_out a \code{character} with the path to the output Raster Brick.
+#' @param endmember a \code{data.frame} with the definitions of the endmembers.
+#' @param ... extra options for the job generator function (\code{make_jobs}).
+#' @param multicores a \code{numeric} value defining the number of CPU cores to
+#' be used to generate fraction images.
 #'
 #' @return todo
 #' @export
