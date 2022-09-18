@@ -25,4 +25,4 @@ jobs:
       with:
         context: applications/bdc-article/compendium
         push: true
-        tags: stormproject/pkg-bdc-article:0.1
+        tags: stormproject/pkg-bdc-article:0.2

@@ -25,4 +25,4 @@ jobs:
       with:
         context: applications/sits-article/compendium
         push: true
-        tags: stormproject/pkg-sits-article:0.1
+        tags: stormproject/pkg-sits-article:0.2
