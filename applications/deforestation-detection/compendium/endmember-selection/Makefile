@@ -11,14 +11,14 @@
 # Infrastructure commands
 #
 buildenv:  ## Build the experiment docker environment
-	docker build --no-cache -t "stormproject/pkg-endmember-selection:0.1" .
+	docker build --no-cache -t "stormproject/pkg-endmember-selection:0.2" .
 
 startenv:  ## Start the experiment docker environment
 	docker run -d -ti \
 	--name pkg-endmember-selection \
 	--publish 8888:8888 \
 	--volume ${PWD}/data/derived_data/:/home/jovyan/endmember-selection/data/derived_data \
-	stormproject/pkg-endmember-selection:0.1
+	stormproject/pkg-endmember-selection:0.2
 
 #
 # Start the Spectral Unmixing endmember selection

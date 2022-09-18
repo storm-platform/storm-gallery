@@ -42,3 +42,8 @@ RUN cd /home/${NB_USER}/evaluate-classification \
 
 USER $NB_USER
 
+#
+# Installing the Storm Workbench
+#
+RUN git clone https://github.com/storm-platform/storm-workbench.git \
+	&& pip install -e ./storm-workbench[cli,exporter-bagit]

@@ -11,14 +11,14 @@
 # Infrastructure commands
 #
 buildenv:  ## Build the experiment docker environment
-	docker build --no-cache -t "stormproject/pkg-fraction-classification:0.1" .
+	docker build --no-cache -t "stormproject/pkg-fraction-classification:0.2" .
 
 startenv:  ## Start the experiment docker environment
 	docker run -d -ti \
 		--name pkg-fraction-classification \
 		--publish 8888:8888 \
 		--volume ${PWD}/data:/home/jovyan/fraction-classification/data \
-		stormproject/pkg-fraction-classification:0.1
+		stormproject/pkg-fraction-classification:0.2
 
 #
 # Start the Deforestation detection classification workflow

@@ -11,14 +11,14 @@
 # Infrastructure commands
 #
 buildenv:  ## Build the experiment docker environment
-	docker build --no-cache -t "stormproject/pkg-evaluate-classification:0.1" .
+	docker build --no-cache -t "stormproject/pkg-evaluate-classification:0.2" .
 
 startenv:  ## Start the experiment docker environment
 	docker run -d -ti \
 		--name pkg-evaluate-classification \
 		--publish 8888:8888 \
 		--volume ${PWD}/data:/home/jovyan/evaluate-classification/data \
-	stormproject/pkg-evaluate-classification:0.1
+	stormproject/pkg-evaluate-classification:0.2
 
 #
 # Start the evaluation workflow

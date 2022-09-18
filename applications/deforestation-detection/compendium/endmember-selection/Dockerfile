@@ -46,3 +46,9 @@ RUN cd /home/${NB_USER}/endmember-selection \
 	&& chown -R ${NB_UID}:${NB_GID} /home/${NB_USER}
 
 USER $NB_USER
+
+#
+# Installing the Storm Workbench
+#
+RUN git clone https://github.com/storm-platform/storm-workbench.git \
+	&& pip install -e ./storm-workbench[cli,exporter-bagit]
