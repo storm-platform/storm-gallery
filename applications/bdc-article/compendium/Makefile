@@ -11,14 +11,14 @@
 # Infrastructure commands
 #
 buildenv:
-	docker build --no-cache -t "stormproject/pkg-bdc-article:0.1" .
+	docker build --no-cache -t "stormproject/pkg-bdc-article:0.2" .
 
 startenv:
 	docker run -d -ti \
 		--name pkg-bdc-article \
 		--publish 8888:8888 \
 		--volume ${PWD}:/home/jovyan/bdc-article \
-	stormproject/pkg-bdc-article:0.1
+	stormproject/pkg-bdc-article:0.2
 
 #
 # Start the LULC classification workflow
