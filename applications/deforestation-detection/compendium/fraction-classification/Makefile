@@ -21,7 +21,7 @@ startenv:  ## Start the experiment docker environment
 		stormproject/pkg-fraction-classification:0.2
 
 finishenv:  ## Finalize the environment
-	docker rm -f pkg-endmember-selection
+	docker rm -f pkg-fraction-classification
 
 #
 # Start the Deforestation detection classification workflow

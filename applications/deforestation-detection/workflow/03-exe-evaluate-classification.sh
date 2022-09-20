@@ -45,7 +45,7 @@ docker exec \
 #
 docker exec \
     -w /home/jovyan/evaluate-classification pkg-evaluate-classification \
-      workbench export compendium -o data/devired_data/execution-compendium
+      workbench export compendium -o data/derived_data/execution-compendium
 
 #
 # 5. Finishing the experiment environment
