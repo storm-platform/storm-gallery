@@ -20,6 +20,9 @@ startenv:  ## Start the experiment docker environment
 		--volume ${PWD}/data:/home/jovyan/fraction-classification/data \
 		stormproject/pkg-fraction-classification:0.2
 
+finishenv:  ## Finalize the environment
+	docker rm -f pkg-endmember-selection
+
 #
 # Start the Deforestation detection classification workflow
 #

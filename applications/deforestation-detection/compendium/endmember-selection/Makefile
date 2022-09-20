@@ -5,7 +5,7 @@
 # storm-gallery is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-.PHONY: start clean help buildenv startenv
+.PHONY: start clean help buildenv startenv finishenv
 
 #
 # Infrastructure commands
@@ -19,6 +19,9 @@ startenv:  ## Start the experiment docker environment
 	--publish 8888:8888 \
 	--volume ${PWD}/data/derived_data/:/home/jovyan/endmember-selection/data/derived_data \
 	stormproject/pkg-endmember-selection:0.2
+
+finishenv:  ## Finalize the environment
+	docker rm -f pkg-endmember-selection
 
 #
 # Start the Spectral Unmixing endmember selection

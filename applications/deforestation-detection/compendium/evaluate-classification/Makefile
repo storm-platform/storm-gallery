@@ -20,6 +20,9 @@ startenv:  ## Start the experiment docker environment
 		--volume ${PWD}/data:/home/jovyan/evaluate-classification/data \
 	stormproject/pkg-evaluate-classification:0.2
 
+finishenv:  ## Finalize the environment
+	docker rm -f pkg-endmember-selection
+
 #
 # Start the evaluation workflow
 #
