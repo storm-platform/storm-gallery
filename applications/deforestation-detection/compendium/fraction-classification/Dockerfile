@@ -35,9 +35,9 @@ RUN cd fraction-classification \
         && Rscript -e "devtools::install()" \
         && chown -R ${NB_UID}:${NB_GID} /home/${NB_USER}
 
-USER $NB_USER
-
 #
 # Installing the Storm Workbench
 #
 RUN pip install git+https://github.com/storm-platform/storm-workbench
+
+USER $NB_USER
