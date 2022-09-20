@@ -45,9 +45,10 @@ RUN cd /home/${NB_USER}/endmember-selection \
     	&& mamba run --name base pip install . \
 	&& chown -R ${NB_UID}:${NB_GID} /home/${NB_USER}
 
-USER $NB_USER
-
 #
 # Installing the Storm Workbench
 #
 RUN pip install git+https://github.com/storm-platform/storm-workbench
+
+
+USER $NB_USER
