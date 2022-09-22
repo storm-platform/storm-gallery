@@ -5,7 +5,6 @@ description = ""
 authors = ["Felipe Carlos <efelipecarlos@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "deforestation_detection"}]
 
 [tool.poetry.dependencies]
 python = "^3.8"

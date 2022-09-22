@@ -11,7 +11,7 @@
 #
 
 # Experiment step path
-STEP_PATH=evaluate-classification
+STEP_PATH=compendium/evaluate-classification
 
 STEP_EXECUTION_COMPENDIUM_STEP=data/derived_data/execution-compendium
 

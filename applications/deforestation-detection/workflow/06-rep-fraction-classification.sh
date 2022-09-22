@@ -11,7 +11,7 @@
 #
 
 # Experiment step path
-STEP_PATH=fraction-classification
+STEP_PATH=compendium/fraction-classification
 
 STEP_EXECUTION_COMPENDIUM_STEP=data/derived_data/execution-compendium
 
