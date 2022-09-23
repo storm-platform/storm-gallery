@@ -5,10 +5,10 @@
 # storm-gallery is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-.PHONY: extract_ts lulc_* start clean help buildenv startenv
+.PHONY: exe-* help buildenv startenv
 
 #
-# Infrastructure commands
+# Infrastructure commands  (High-level commands)
 #
 buildenv:
 	docker build --no-cache -t "stormproject/pkg-bdc-article:0.2" .
@@ -21,13 +21,25 @@ startenv:
 	stormproject/pkg-bdc-article:0.2
 
 #
-# Start the LULC classification workflow
+# Start the LULC classification workflow (High-level commands)
 #
-start: data/derived_data/notebook/CB4_64_16D_STK-1%.ipynb data/derived_data/notebook/LC8_30_16D_STK-1%.ipynb data/derived_data/notebook/S2-SEN2COR_10_16D_STK-1%.ipynb ## Run the complete LULC classification workflow
+exe-start: data/derived_data/notebook/CB4_64_16D_STK-1%.ipynb data/derived_data/notebook/LC8_30_16D_STK-1%.ipynb data/derived_data/notebook/S2-SEN2COR_10_16D_STK-1%.ipynb ## Run the complete LULC classification workflow
 	@echo "Classification workflow finished"
 
-clean:  ## Clean the generated results
+exe-clean:  ## Clean the generated results
 	rm -rf data/derived_data
+
+exe-timeseries: data/derived_data/samples/train/%.rds ## Workflow Step 1 - Extract time series
+	@echo "Processed"
+
+exe-cbers4: data/derived_data/notebook/CB4_64_16D_STK-1%.ipynb ## Workflow Step 2 - Processing CBERS-4/AWFI data
+	@echo "Processed"
+
+exe-landsat8: data/derived_data/notebook/LC8_30_16D_STK-1%.ipynb ## Workflow Step 3 - Processing Landsat-8/OLI data
+	@echo "Processed"
+
+exe-sentinel2: data/derived_data/notebook/S2-SEN2COR_10_16D_STK-1%.ipynb  ## Workflow Step 4 - Processing Sentinel-2/MSI data
+	@echo "Processed"
 
 #
 # Processing commands
