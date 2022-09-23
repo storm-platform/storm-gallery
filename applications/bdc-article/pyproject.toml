@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "bdc-article"
+version = "0.1.0"
+description = ""
+authors = ["Felipe Carlos <efelipecarlos@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pandas = "^1.5.0"
+is-equal = { git = "https://github.com/storm-platform/is.equal", rev = "main" }
+rasterio = "^1.3.2"
+storm-workbench = {git = "https://github.com/storm-platform/storm-workbench"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
