@@ -5,11 +5,17 @@
 # storm-gallery is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-start:  ## Execute the complete experiment and reproduce it
+exe-produce:  ## Execute the experiment
 	workflow/01-exe-endmember-selection.sh
 	workflow/02-exe-fraction-classification.sh
 	workflow/03-exe-evaluate-classification.sh
+
+
+rep-prepare:  ## Prepare the environment to reproduce the experiment
 	workflow/04-rep-prepare-environment.sh
+
+
+rep-reproduce: ##  Reproduce the experiment
 	workflow/05-rep-endmember-selection.sh
 	workflow/06-rep-fraction-classification.sh
 	workflow/07-rep-evaluate-classification.sh
