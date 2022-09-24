@@ -29,7 +29,7 @@ make startenv
 docker exec \
     -e BDC_ACCESS_KEY="${BDC_ACCESS_TOKEN}" \
     -w /home/jovyan/bdc-article pkg-bdc-article \
-      workbench exec run --name "Experiment - CBERS/AWFI classification and validation (2)" make exe-cbers4
+      workbench exec run --name "Experiment - CBERS-4A/AWFI classification and validation (2)" make exe-cbers4
 
 #
 # 4. Exporting the execution compendium

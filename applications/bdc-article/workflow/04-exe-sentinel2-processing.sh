@@ -29,7 +29,7 @@ make startenv
 docker exec \
     -e BDC_ACCESS_KEY="${BDC_ACCESS_TOKEN}" \
     -w /home/jovyan/bdc-article pkg-bdc-article \
-      workbench exec run --name "Experiment - Sentinel-2 classification and validation (4)" make exe-sentinel2
+      workbench exec run --name "Experiment - Sentinel-2/MSI classification and validation (4)" make exe-sentinel2
 
 #
 # 4. Exporting the execution compendium
