@@ -10,15 +10,18 @@
 #
 # Infrastructure commands  (High-level commands)
 #
-buildenv:
+buildenv:  ## Build the experiment docker environment
 	docker build --no-cache -t "stormproject/pkg-bdc-article:0.2" .
 
-startenv:
+startenv:  ## Start the experiment docker environment
 	docker run -d -ti \
 		--name pkg-bdc-article \
 		--publish 8888:8888 \
 		--volume ${PWD}:/home/jovyan/bdc-article \
 	stormproject/pkg-bdc-article:0.2
+
+finishenv:  ## Finalize the environment
+	docker rm -f pkg-bdc-article
 
 #
 # Start the LULC classification workflow (High-level commands)
@@ -59,7 +62,7 @@ data/derived_data/samples/train/%.rds:
 
 
 # Create the LULC map using the CBERS-4 (16 days Stack) data cube
-data/derived_data/notebook/CB4_64_16D_STK-1%.ipynb: data/derived_data/samples/train/%.rds
+data/derived_data/notebook/CB4_64_16D_STK-1%.ipynb:
 	@echo "Classifying the data cube (CBERS-4)"
 	cd analysis/ \
 		&& papermill \
@@ -76,7 +79,7 @@ data/derived_data/notebook/CB4_64_16D_STK-1%.ipynb: data/derived_data/samples/tr
 
 
 # Create the LULC map using the Landsat-8 (16 days Stack) data cube
-data/derived_data/notebook/LC8_30_16D_STK-1%.ipynb: data/derived_data/samples/train/%.rds
+data/derived_data/notebook/LC8_30_16D_STK-1%.ipynb:
 	@echo "Classifying the data cube (Landsat-8)"
 	cd analysis/ \
 		&& papermill \
@@ -93,7 +96,7 @@ data/derived_data/notebook/LC8_30_16D_STK-1%.ipynb: data/derived_data/samples/tr
 
 
 # Create the LULC map using the Sentinel-2 (16 days Stack) data cube
-data/derived_data/notebook/S2-SEN2COR_10_16D_STK-1%.ipynb: data/derived_data/samples/train/%.rds
+data/derived_data/notebook/S2-SEN2COR_10_16D_STK-1%.ipynb:
 	@echo "Classifying the data cube (Sentinel-2)"
 	cd analysis/ \
 		&& papermill \
