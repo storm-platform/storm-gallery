@@ -20,6 +20,13 @@ rep-reproduce: ##  Reproduce the experiment
 	workflow/06-rep-fraction-classification.sh
 	workflow/07-rep-evaluate-classification.sh
 
+checksum:  ##  Generate compendium files checksum
+	mkdir -p checksums
+
+	find ./compendium -type f -exec md5sum {} > checksums/md5sums.txt \;
+	find ./compendium -type f -exec sha256sum {} > checksums/sha256sums.txt \;
+	find ./compendium -type f -exec sha512sum {} > checksums/sha512sums.txt \;
+
 #
 # Documentation function (thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html)
 #
