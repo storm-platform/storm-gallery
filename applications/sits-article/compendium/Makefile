@@ -5,7 +5,7 @@
 # storm-gallery is free software; you can redistribute it and/or modify it
 # under the terms of the MIT License; see LICENSE file for more details.
 
-.PHONY: exe-* help buildenv startenv
+.PHONY: clean help buildenv startenv startclassification-*
 
 #
 # Infrastructure commands  (High-level commands)
@@ -24,17 +24,13 @@ startenv:
 # Start the LULC classification workflow (High-level commands)
 #
 startclassification-cerrado:  ## Start the cerrado classification workflow
-    workbench exec run \
-        --name "Experiment - Cerrado LULC classification" \
-        --stormfile workflow/Stormfile.cerrado.yaml
+	workbench exec run --name "Experiment - Cerrado LULC classification" --stormfile "workflow/Stormfile.cerrado.yaml"
 
 startclassification-matogrosso:  ## Start the Mato Grosso classification workflow
-    workbench exec run \
-        --name "Experiment - Mato grosso LULC classification" \
-        --stormfile workflow/Stormfile.matogrosso.yaml
+	workbench exec run --name "Experiment - Mato grosso LULC classification" --stormfile "workflow/Stormfile.matogrosso.yaml"
 
 clean:
-    rm -rf data/derived_data
+	rm -rf data/derived_data
 
 #
 # Documentation function (thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html)

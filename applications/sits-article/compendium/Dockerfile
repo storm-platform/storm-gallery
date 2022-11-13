@@ -22,12 +22,12 @@ RUN apt update --yes \
 #
 # Copying the package files.
 #
-COPY . bdc-article
+COPY . sits-article
 
 #
 # Installing the package dependencies.
 #
-RUN cd bdc-article \
+RUN cd sits-article \
         && mamba env update --file environment.yml \
         # Preparing the Jupyter Notebook kernel
         && Rscript -e "IRkernel::installspec()" \
@@ -35,5 +35,10 @@ RUN cd bdc-article \
         && Rscript -e "renv::restore(prompt=F)" \
         && Rscript -e "devtools::install()" \
         && chown -R ${NB_UID}:${NB_GID} /home/${NB_USER}
+
+#
+# Installing the Storm Workbench
+#
+RUN pip install git+https://github.com/storm-platform/storm-workbench
 
 USER $NB_USER
