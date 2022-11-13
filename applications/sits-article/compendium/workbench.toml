@@ -6,34 +6,10 @@
 # under the terms of the MIT License; see LICENSE file for more details.
 
 [tool.storm]
-
 #
 # Application name
 #
-name = "lulc-classification"
-
-#
-# Data Objects
-#   > Dictionary with the definition of directories and files that should
-#     be added/removed from/to the compendia zip file.
-#
-data_objects = { }
-
-#
-# Ignored Data Objects
-#  > Dictionary with the definition of directories and files that should
-#    be excluded from the ``inputs/outputs`` metadata definition. You can
-#    use this argument to remove files like python modules scripts or cache
-#    files loaded (which sometimes is detected as ``input``, for example).
-#
-ignored_data_objects = { }
-
-#
-# Ignored Environment Variables
-#  > List with the environment variables that must be removed from the
-#    reproducible bundle.
-#
-ignored_environment_variables = ["BDC_ACCESS_KEY"]
+name = "sits-lulc-classification"
 
 #
 # Files Checksum Algorithm
@@ -43,10 +19,75 @@ ignored_environment_variables = ["BDC_ACCESS_KEY"]
 #
 files_checksum_algorithm = "md5"
 
-[tool.storm.executor]
+#
+# Mode
+#  > Storm Compendium operation mode. Two operation mode are available:
+#    - "production" mode: Allows the production of reproducible queries and executable packages.
+#    - "reproduction" mode: Allows the reproduction of already finished and packaged projects.
+#
+mode = "production"
 
+#
+# Ignored Environment Variables
+#  > List with the environment variables that must be removed from the
+#    reproducible bundle.
+#
+ignored_environment_variables = []
+
+
+[tool.storm.ignored_data_objects]
+#
+# Ignored Data Objects
+#  > Dictionary with the definition of directories and files that should
+#    be excluded from the ``inputs/outputs`` metadata definition. You can
+#    use this argument to remove files like python modules scripts or cache
+#    files loaded (which sometimes is detected as ``input``, for example).
+#
+
+# Examples:
+
+# Exclude Python files
+# python_files = "*.pyc"
+
+# Exclude YAML files
+# python_files = "*.yaml"
+
+[tool.storm.data_objects]
+#
+# Data Objects
+#   > Dictionary with the definition of directories and files that should
+#     be added/removed from/to the compendia zip file.
+#
+
+# Examples:
+
+# Exclude all .tif files.
+# my_dataset = {pattern = "*data/raw_data/tifs/*/*.tif", action = "exclude" }
+
+# Include all .jp2 files .
+# my_dataset = {pattern = "*data/raw_data/jp2/*/*.tif", action = "include" }
+
+[tool.storm.executor]
 #
 # Workbench execution scheduler
 #
 type = "paradag.parallel"
 options = { n_process = 1 }
+
+[tool.storm.exporter]
+
+#
+# Compendia and Datasets exporter
+#
+name = "bagit"
+
+#
+# Number of jobs by the Exporter.
+#
+jobs = 4
+
+[tool.storm.ws]
+#
+# Storm WS configurations
+#
+url = "https://storm-platform.org/ws/api"
