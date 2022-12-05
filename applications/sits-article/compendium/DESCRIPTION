@@ -1,0 +1,32 @@
+Package: lulc
+Title: LULC Classification Research Compendium
+Version: 0.0.1
+Authors@R: c(person('Felipe', 'Carlos', role = c('aut', 'cre'), email = 'felipe.carlos@inpe.br'),
+             person('Felipe', 'Souza', role = c('aut'), email = 'felipe.carvalho@inpe.br')
+             )
+Maintainer: Felipe Carlos <felipe.carlos@inpe.br>
+Description: This package is the materialization of a Research Compendium (RC), 
+        created based on the annotations made by Marwick et al. (2017). <10.1080/00031305.2017.1375986>. 
+        This RC implements the complete flow described in Simoes et al. (2021) <doi:10.3390/rs13132428> 
+        for generating land use and land cover maps using Earth Observation Data Cubes and Machine Learning 
+        algorithms.
+Encoding: UTF-8
+Language: en-US
+Depends: R (>= 4.0.0)
+URL: https://github.com/storm-platform/storm-gallery
+BugReports: https://github.com/storm-platform/storm-gallery/issues
+License: MIT + file LICENSE
+ByteCompile: true
+LazyData: true
+Imports:
+    sits (>= 1.0.0),
+    dplyr,
+    future,
+    furrr,
+    gdalUtilities,
+    fs,
+    yaml,
+    sf,
+    readr
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
